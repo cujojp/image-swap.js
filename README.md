@@ -11,7 +11,7 @@ image-swap.js will show and hide an image based on when and if you define an ima
 Getting Started
 ===========
 
-Write your '<img>' tag's as you normally would but also define a class, and add an HTML5 srcset attribute (read more about html5 srcset attribute [here](http://goo.gl/MnfAf) ). When writing your HTML5 srcset attribute, define the image source, the width of the browser you wish to load the image source, and weather it is a retina image or not. 
+Write your ` <img> ` tag's as you normally would but also define a class, and add an HTML5 srcset attribute (read more about html5 srcset attribute [here](http://goo.gl/MnfAf) ). When writing your HTML5 srcset attribute, define the image source, the width of the browser you wish to load the image source, and weather it is a retina image or not. 
 
 Here's an example of how the image tag should look:
 
