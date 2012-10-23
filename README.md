@@ -15,7 +15,13 @@ Write your <img> tag's as you normally would but also define a class, and add an
 
 Here's an example of how the image tag should look:
 
-    <img src="kitten.gif" class="kitten-img" srcset="kitten_mobile.gif 320w, kitten_mobile_2x.gif 320w 2x, kitten_tablet.gif 768, kitten.gif 1024, kitten_2x.gif 1024 2x" >
+    <img src="kitten.gif" class="kitten-img" srcset="
+      kitten_mobile.gif 320w, 
+      kitten_mobile_2x.gif 320w 2x, 
+      kitten_tablet.gif 768, 
+      kitten.gif 1024, 
+      kitten_2x.gif 1024 2x" 
+    />
 
 Then initialize image-swap.js. 
 
