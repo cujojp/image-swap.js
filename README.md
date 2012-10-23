@@ -3,7 +3,7 @@ image-swap.js
 
 Use HTML5 srcset attributes to show and hide images based on your browser viewport plus device pixel density. 
 
-image-swap.js uses the HTML5 srcset attribute, plus javascript breakpoints to load and swap image sources. When using CSS 'display:none;' to hide an image on a page, an http request is still sent to the browser menaing the image is still loaded and hurting performance. 
+image-swap.js uses the HTML5 srcset attribute, plus javascript breakpoints to load and swap image sources. When using CSS 'display:none;' to hide an image on a page, an http request is still sent to the browser meaning the image is still loaded and hurting performance. 
 
 image-swap.js will show and hide an image based on when and if you define an image to be loaded, and its quite simple!
 
@@ -11,7 +11,7 @@ image-swap.js will show and hide an image based on when and if you define an ima
 Getting Started
 ===========
 
-Write your <img> tag's as you normally would but also define a class, and add an html5 srcset attribute (read more about html5 srcset attribute [here](http://goo.gl/MnfAf) ). When writing your html5 srcset attribute, define the image source, the width of the browser you wish to load the image source, and weather it is a retina image or not. 
+Write your '<img>' tag's as you normally would but also define a class, and add an HTML5 srcset attribute (read more about html5 srcset attribute [here](http://goo.gl/MnfAf) ). When writing your HTML5 srcset attribute, define the image source, the width of the browser you wish to load the image source, and weather it is a retina image or not. 
 
 Here's an example of how the image tag should look:
 
