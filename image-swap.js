@@ -189,13 +189,11 @@
 
       // now we loop through our candidates and add the right one to the source!
       if (srcSetCandidates.length === 0) {
-        console.error('No Images found for breakpoint '+this.currBreakpoint+'. Please add an image source within the srcset attribute.')
         $(imgsrc).attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==').hide()
         return
       }
       
       for (var j = 0; j < srcSetCandidates.length; j++) {
-        console.log(srcSetCandidates,this.currBreakpoint,$win.outerWidth())
 
         if (
           winX >= 1.5 && // Are we high dpi?
@@ -211,13 +209,11 @@
           this.currBreakpoint <= srcSetCandidates[j].w && // is our image still larger than our breakpoint?
           srcSetCandidates[j].x <= winX // our images resoltuion is smaller than the window x
         ) {
-          console.log(srcSetCandidates)
           self.swapImage(imgsrc, srcSetCandidates[j].src, matchWidth, this.currBreakpoint)
           return
         }
 
         if (srcSetCandidates.length === 1) {
-          console.warn('No images match our current breakpoint, or device resolution!')
 
           if (this.$bestAvailable) {
             self.swapImage(imgsrc, srcSetCandidates[j].src, matchWidth, this.currBreakpoint)
@@ -237,8 +233,6 @@
       self = this,
 			done = false,
       imgsrc = this.$swapImage
-
-      //console.log(this.$breakpoints[bp], this.lastSize)
 
       for (var bp in this.$breakpoints.sort(function(x,y) { return (y-x) })) {
 
