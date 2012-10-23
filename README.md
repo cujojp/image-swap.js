@@ -14,9 +14,11 @@ Getting Started
 Write your <img> tag's as you normally would but also define a class, and add an html5 srcset attribute (read more about html5 srcset attribute [here](http://goo.gl/MnfAf) ). When writing your html5 srcset attribute, define the image source, the width of the browser you wish to load the image source, and weather it is a retina image or not. 
 
 Here's an example of how the image tag should look:
+
     <img src="kitten.gif" class="kitten-img" srcset="kitten_mobile.gif 320w, kitten_mobile_2x.gif 320w 2x, kitten_tablet.gif 768, kitten.gif 1024, kitten_2x.gif 1024 2x" >
 
 Then initialize image-swap.js. 
+
     $.fn.imageSwap({imageContainer: '.kitten-img', breakpoints: [320,768,1024]})
 
 Notice the imageContainer, is the class we defined in the <img> tag, and the browser width's we have defined in our image tag match our breakpoints defined in the initialization script.
