@@ -1,40 +1,47 @@
 /////////////////////////////////////
 //
-// app.ImageSwap
+// fn.ImageSwap
 // -----------------------------
+// Use HTML5 srcset attributes to show and hide images based on 
+// your browser viewport plus device pixel density. 
 // 
-// DESCRIPTION: 
-// This module will switch the image source when the user is on a certain breakpoint.
-// We dont want to load a full size image when the user is on a mobile view and likewise
-// for desktop views.
-//
-// Developers, yeah you! When using you will need to add a data attribute, named hmm. I dont know,
-// "data-mobile-img" and contain the source of the mobile image we will want to swap your 
-// desktop image with. Also the image that will do the swapping will need a class of, "mobile-img"
-// this is so we know exactly what image will do the swapping. :)
-//
-// Example!
+// image-swap.js uses the HTML5 srcset attribute, plus javascript 
+// breakpoints to load and swap image sources. When using CSS 
+// 'display:none;' to hide an image on a page, an http request is
+// still sent to the browser menaing the image is still loaded and
+// hurting performance. 
 // -----------------------------
-// <div class="foo" data-mobile-img="foo.jpg">
-//   <img src="bar.jpg" class="mobile-img" /> 
-// </div>
 //
-// 
-// DEPENDENCIES:
-// - /public/javascript/libs/jquery-1.7.2.js
-// - /public/javascript/modules/core.js
-// - /public/javascript/modules/responsive-breakpoints.js
+// GETTING STARTED
+// =======================
 //
-// TODOs: (feature requests ;) )
-// 1) Add ability for users to define own breakpoints mobile, desktop
-//    a. Would probably be an object {mobile: 620, desktop: 800, ultra-display: 1900}
-//    b. Markup would rely on object names, <div class="switch-img" data-ultra-display="img-src"><img src="" class="switch-img"></div>
-// 2) Add ability for users to define more than two breakpoints
-// 
+// Write your <img> tag's as you normally would but also define a class, and add an html5 srcset attribute (read more about html5 srcset attribute [here](http://goo.gl/MnfAf) ). When writing your html5 srcset attribute, define the image source, the width of the browser you wish to load the image source, and weather it is a retina image or not. 
+//
+// Here's an example of how the image tag should look:
+//
+// <img src="kitten.gif" class="kitten-img" srcset="
+//   kitten_mobile.gif 320w, 
+//   kitten_mobile_2x.gif 320w 2x, 
+//   kitten_tablet.gif 768, 
+//   kitten.gif 1024, 
+//   kitten_2x.gif 1024 2x" 
+// />
 //
 // INITIALIZATION:
-// app.ImageSwap = new app._Modules.ImageSwap() 
+// $.fn.imageSwap({imageContainer: '.swap-img', breakpoints: [480,768,1024]})
 // 
+// -----------------------------
+//
+// DEPENDENCIES:
+// - /public/javascript/libs/jquery-1.7.2.js
+//
+//
+// Copyright 2012 Kaleb White
+// http://cujo.jp/
+//
+// Licensed under the MIT license:
+// http://www.opensource.org/licenses/mit-license.php
+//
 /////////////////////////////////////
 
 !(function( $, window, document, undefined ){
@@ -43,7 +50,6 @@
   defaults,
   breakpoints,
   helpers
-
 
   /////////////////////////////////////
   // Begin ImageSwap
@@ -64,31 +70,36 @@
 
   ImageSwap = function( elem, options ){
     var options
-
-    // Map optional configs if they exist  
     this.options = options ? $.extend({}, defaults, options) : defaults
     options = this.options
 
-    // ImageSwap jQuery extended elements
+    // fn.ImageSwap properties
+    //========================================
+    // our module's class name
     this.$swapImage = $('img' + options.imageContainer)
-    //this.$mobileImageSrc = options.mobileImageSrc
+    // debouncer settings
     this.$windowInterval = options.interval
+    // show our images after hiding
     this.$createEmptyImage = options.createNewImage
+    // hide the image tag if no breakpoint found
     this.$removeImage = options.removeImage
+    // load the best available image 
     this.$bestAvailable = options.loadBestAvailable
+    // our breakpoints
     this.$breakpoints = options.breakpoints
     // srcset regex gets the URL than parses through the width values  
     this.$urlRegex = '[-a-zA-Z0-9@:%_+.~#?&//=]*'
     this.$imageFragmentRegex = '\\s*(' + this.$urlRegex + ')\\s*([0-9xwh.\\s]*)'
     this.INT_REGEXP = /^[0-9]+$/
+    // fragments of the srcset attribute
     this.$srcsetRegex = '(' + this.$imageFragmentRegex + ',?)+'
     this.IMAGE_FRAGMENT_REGEXP = new RegExp(this.$imageFragmentRegex)
     // boolean to trigger if the image has been set or not
     this.setImage = false
-    this.lastSize = 0
+    // our current breakpoint
     this.currBreakpoint = 0
     
-    // Set up the module
+    // Let's start the show!
     this.init()
   }
 
@@ -174,7 +185,7 @@
             srcSetCandidates.push(srcInfo);     
           }
         }
-      } // end the for loop
+      }
 
       // now we loop through our candidates and add the right one to the source!
       if (srcSetCandidates.length === 0) {
@@ -311,4 +322,3 @@
   }
 
 })( jQuery, window , document );
-
