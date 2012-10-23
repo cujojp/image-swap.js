@@ -37,6 +37,7 @@ Options
 ===========
 
 You can add your own options when initializing the plugin. The image class names can be modified (default class is 'swap-image'), plus we can hide and show the image based with the following options!
+
     imageContainer: string (the image class name) 
     createNewImage: true / false (show the image after hidden)
     removeImage: true / false (hides the image with a inline transparent 1x1.gif) 
