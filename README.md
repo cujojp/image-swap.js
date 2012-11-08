@@ -50,5 +50,5 @@ You can add your own options when initializing the plugin. The image class names
 See it in Action
 ===========
 
-[www.cujo/jp/](http://www.cujo.jp/posts/image-swap-js/)
+[www.cujo.jp](http://www.cujo.jp/posts/image-swap-js/)
 
