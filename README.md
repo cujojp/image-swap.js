@@ -50,4 +50,5 @@ You can add your own options when initializing the plugin. The image class names
 See it in Action
 ===========
 
-This is coming soon too! I'm sorry! :(
+[www.cujo/jp/](http://www.cujo.jp/posts/image-swap-js/)
+
