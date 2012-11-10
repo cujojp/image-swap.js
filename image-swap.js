@@ -255,7 +255,6 @@
           for (var i in this.$breakpoints.sort(function(x,y) { return (y-x) })) {
             if(this.$breakpoints[bp] && imgsrc[i]) {    
               self.getImageData(this.$breakpoints[bp],imgsrc[i])
-                                                                                          
             }
           }
           done = true
@@ -291,8 +290,13 @@
 
       function domReady(){
         // DOM Ready inits
+        
+        // we should hide the image init and give it a 1x1 src
+        self.$swapImage.attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==').hide()
+
         // Recommend calling a sequence of private functions here to kick off the app
         initializeBreakpoints()
+
         // one time init
         self.setupBreakpoints()  
       }
@@ -301,18 +305,16 @@
       function initializeBreakpoints() {
         // run the throttle method and bind your setupBreakpoints to self to keep var's in scope
         $win.bind('resize', self.throttle($.proxy(self.setupBreakpoints, self), self.$windowInterval))
-        //$win.bind('resize', self.throttle(self.setupBreakpoints.bind(self), self.$windowInterval))
       } // end initializeBreakpoints
 
     } // end fn.init
 
   } // end ImageSwap.prototype
 
-  // Attach the ImageSwap constructor to our global namespace
-  //app._Modules.ImageSwap = ImageSwap
-  
+  // Attach the ImageSwap constructor to jQuery
   $.fn.imageSwap = function(options) {
     new ImageSwap(this, options)
   }
 
 })( jQuery, window , document );
+
