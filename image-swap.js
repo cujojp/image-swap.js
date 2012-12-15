@@ -173,7 +173,7 @@
         srcInfo = new ImageInfo({
           src:matchSrc,
           x: matchWidth.x,
-          w: matchWidth.w,
+          w: matchWidth.w
         })
 
         // we have our images width when it should be loaded thats matchWidth.w
@@ -229,7 +229,7 @@
 
     setupBreakpoints: function() {
 			var winWidth = $win.width(), 
-      winX = $win.devicePixelRatio
+      winX = $win.devicePixelRatio,
       self = this,
 			done = false,
       imgsrc = this.$swapImage
@@ -317,4 +317,3 @@
   }
 
 })( jQuery, window , document );
-
