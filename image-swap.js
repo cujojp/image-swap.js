@@ -122,15 +122,17 @@
 
     // used for the width  and height plus retina / non retina qualities of the image
     imageDescriptions: function(string) {
-      var descriptors = string.split(/\s/)
-      var out = {}     
+      var descriptors = string.split(/\s/),
+      out = {}
+      
       for (var i = 0; i < descriptors.length; i++) {
         var desc = descriptors[i]
         if (desc.length > 0) {
-          var lastChar = desc[desc.length-1], 
+          var lastChar = desc.charAt(desc.length-1), 
           value = desc.substring(0, desc.length-1), // get rid of the end w/h/x
           intVal = parseInt(value, 10),
           floatVal = parseFloat(value)
+
           if (value.match(this.INT_REGEXP) && lastChar === 'w') {
             out[lastChar] = intVal
           } else if (value.match(this.INT_REGEXP) && lastChar =='h') {
