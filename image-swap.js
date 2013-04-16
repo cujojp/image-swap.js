@@ -60,7 +60,7 @@
     createNewImage: true, // if an image doesnt exist, do you want to make one?
     removeImage: true, // if an image srcset does not exist, we hide the image for that breakpoint
     loadBestAvailable: true, // if a 100% match is not found, load the cloesest image IN that breakpoint
-    detectPixelDensityChanges: false, // trigger event for when pixel density changes when browser moved to different monitors
+    monitorPixelDensity: false, // trigger event for when pixel density changes when browser moved to different monitors
     interval: 250,
     breakpoints: [
       480,
@@ -100,7 +100,7 @@
     // our current breakpoint
     this.currBreakpoint = 0
     // trigger event for when pixel density changes when browser moved to different monitors
-    this.triggerDensityChange = options.detectPixelDensityChanges
+    this.triggerDensityChange = options.monitorPixelDensity
     
     // Let's start the show!
     this.init()

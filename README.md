@@ -42,6 +42,7 @@ You can add your own options when initializing the plugin. The image class names
     createNewImage: true / false (show the image after hidden)
     removeImage: true / false (hides the image with a inline transparent 1x1.gif) 
     loadBestAvailable: true / false (if on 2x device no 2x image defined, load the low-res image)
+    monitorPixelDensity: true / false (monitors pixel density changes from different monitors)
     interval: int (how frequent does the script run on window resize in milliseconds)
 
 
