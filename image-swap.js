@@ -60,6 +60,7 @@
     createNewImage: true, // if an image doesnt exist, do you want to make one?
     removeImage: true, // if an image srcset does not exist, we hide the image for that breakpoint
     loadBestAvailable: true, // if a 100% match is not found, load the cloesest image IN that breakpoint
+    detectPixelDensityChanges: false, // trigger event for when pixel density changes when browser moved to different monitors
     interval: 250,
     breakpoints: [
       480,
@@ -98,6 +99,8 @@
     this.setImage = false
     // our current breakpoint
     this.currBreakpoint = 0
+    // trigger event for when pixel density changes when browser moved to different monitors
+    this.triggerDensityChange = options.detectPixelDensityChanges
     
     // Let's start the show!
     this.init()
@@ -229,6 +232,23 @@
       }
     },
 
+    checkPixelDensity: function() {
+      var self = this,
+      isHighDensityScreen = window.matchMedia( '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)' ).matches
+      
+      // assign our currentMediaQuery  
+      isHighDensityScreen ? self.currentMediaQuery = 'highDensity' : self.currentMediaQuery = 'lowDensity'
+
+      if (self.currentMediaQuery != self.lastMediaQuery) {
+        self.lastMediaQuery = this.currentMediaQuery
+        self.setupBreakpoints()
+      }
+    },
+
+    initializePixelDensityCheck: function() {
+      setInterval($.proxy(this.checkPixelDensity, this), this.$windowInterval)
+    },
+
     setupBreakpoints: function() {
 			var winWidth = $win.width(), 
       winX = $win.devicePixelRatio,
@@ -305,8 +325,13 @@
 
       // handleResponsive is a utility to assign all of the breakpoint event handlers we want for this module
       function initializeBreakpoints() {
+        
+        // checks the pixel density on load
+        if (self.triggerDensityChange) self.initializePixelDensityCheck()
+
         // run the throttle method and bind your setupBreakpoints to self to keep var's in scope
         $win.bind('resize', self.throttle($.proxy(self.setupBreakpoints, self), self.$windowInterval))
+
       } // end initializeBreakpoints
 
     } // end fn.init
