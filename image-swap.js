@@ -156,7 +156,7 @@
       self = this, 
       srcSetCandidates = [],
       imgsrc = img,
-      srcsetStrings = $(imgsrc).attr('srcset').split(','),
+      srcsetStrings = $(imgsrc).data('srcset').split(','),
       ImageInfo = function(options) {
         this.src = options.src;
         this.w = options.w || Infinity;
