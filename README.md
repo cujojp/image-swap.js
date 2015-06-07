@@ -15,7 +15,7 @@ Write your ` <img> ` tag's as you normally would but also define a class, and ad
 
 Here's an example of how the image tag should look:
 
-    <img src="kitten.gif" class="kitten-img" srcset="
+    <img src="kitten.gif" class="kitten-img" data-srcset="
       kitten_mobile.gif 320w, 
       kitten_mobile_2x.gif 320w 2x, 
       kitten_tablet.gif 768, 
